@@ -1,0 +1,23 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/javascript-node
+{
+  "name": "evgo-op-ext",
+  "service": "app",
+  "workspaceFolder": "/evgo-op-ext",
+  "dockerComposeFile": "docker-compose.yml",
+  // Set *default* container specific settings.json values on container create.
+  "settings": {},
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "2gua.rainbow-brackets",
+    "Tyriar.sort-lines",
+    "amatiasq.sort-imports",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "medo64.render-crlf",
+    "ms-azuretools.vscode-docker",
+    "streetsidesoftware.code-spell-checker"
+  ],
+  "remoteUser": "node",
+  "postCreateCommand": "sudo chmod a+rwx /evgo-op-ext && git clone git@bitbucket.org:evgo/evgo-op-ext.git . && yarn install"
+}

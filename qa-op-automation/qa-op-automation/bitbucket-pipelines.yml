@@ -1,0 +1,119 @@
+image: codeceptjs/codeceptjs:latest
+
+pipelines:
+  pull-requests:
+    "**":
+      - step:
+          name: "Install and Test"
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils
+            - yarn install --ignore-optional --frozen-lockfile
+            - yarn lint
+            - yarn spell-check
+            - yarn test:tagged @this-is-to-make-sure-it-can-compile
+          artifacts:
+            - output/**
+  custom:
+    dev-chargerbotsSession:
+      - step:
+          name: "Chargerbots Session test in dev"
+          deployment: dev-chargerbotsSession
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils bash
+            - yarn install --production=true --ignore-optional --frozen-lockfile
+            - chmod +x dns-setup.sh
+            - ./dns-setup.sh
+            - export CHARGER_SESSION_TIME=$(shuf -i 300-3600 -n 1)
+            - CHARGER_SESSION_TIME=$CHARGER_SESSION_TIME
+            - echo $CHARGER_SESSION_TIME
+            - TYPE=chargerBotsSession
+            - yarn test --grep @C473957
+          artifacts:
+            - output/**
+    qa-smoke:
+      - step:
+          name: "Install and Smoke Test in QA"
+          deployment: qa-smoke
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils
+            - yarn install --production=true --ignore-optional --frozen-lockfile
+            - chmod +x dns-setup.sh
+            - ./dns-setup.sh
+            - SHOW_BROWSER=false
+            - yarn test:tagged @smoke_test
+          artifacts:
+            - output/**
+    qa-regression:
+      - step:
+          name: "Install and Regression Test in QA"
+          deployment: qa-regression
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils
+            - yarn install --production=true --ignore-optional --frozen-lockfile
+            - chmod +x dns-setup.sh
+            - ./dns-setup.sh
+            - yarn test
+          artifacts:
+            - output/**
+    qa-chargerbotsSession:
+      - step:
+          name: "Chargerbots Session test in QA"
+          deployment: qa-chargerbotsSession
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils bash
+            - yarn install --production=true --ignore-optional --frozen-lockfile
+            - chmod +x dns-setup.sh
+            - ./dns-setup.sh
+            - export CHARGER_SESSION_TIME=$(shuf -i 300-3600 -n 1)
+            - CHARGER_SESSION_TIME=$CHARGER_SESSION_TIME
+            - echo $CHARGER_SESSION_TIME
+            - yarn test --grep @C473957
+          artifacts:
+            - output/**
+    stg-smoke:
+      - step:
+          name: "Install and Smoke Test in STG"
+          deployment: stg-smoke
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils
+            - yarn install --production=true --ignore-optional --frozen-lockfile
+            - chmod +x dns-setup.sh
+            - ./dns-setup.sh
+            - yarn test:tagged @smoke_test
+          artifacts:
+            - output/**
+    stg-chargerbotsSession:
+      - step:
+          name: "Chargerbots Session test in stg"
+          deployment: stg-chargerbotsSession
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils bash
+            - yarn install --production=true --ignore-optional --frozen-lockfile
+            - chmod +x dns-setup.sh
+            - ./dns-setup.sh
+            - export CHARGER_SESSION_TIME=$(shuf -i 300-3600 -n 1)
+            - CHARGER_SESSION_TIME=$CHARGER_SESSION_TIME
+            - echo $CHARGER_SESSION_TIME
+            - yarn test --grep @C473957
+          artifacts:
+            - output/**
+    prod-smoke:
+      - step:
+          name: "Install and Smoke Test in Prod"
+          deployment: prod-smoke
+          script:
+            - apt-get update
+            - apt-get -y install --no-install-recommends dnsutils
+            - yarn install --production=true --ignore-optional --frozen-lockfile
+            - chmod +x dns-setup.sh
+            - ./dns-setup.sh
+            - yarn test:tagged @smoke_test @operatorPortal
+          artifacts:
+            - output/**

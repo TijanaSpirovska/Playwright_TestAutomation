@@ -1,0 +1,40 @@
+import faker, { random } from 'faker';
+import { getRandomFloat, getRandomItemFromArray, randomNumber } from './random';
+
+export class FakeData {
+  planCode = faker.lorem.words(3).toUpperCase() + randomNumber(1, 9999);
+  planDescription = faker.lorem.words(3).toUpperCase();
+  intervalLength = randomNumber();
+  planDuration = randomNumber();
+  planName = faker.lorem.words(3).toUpperCase() + randomNumber(1, 9999);
+  connectorTypeId = randomNumber(1, 3);
+  cid = `C${faker.random.alphaNumeric(4)}`;
+  hid = `H${faker.random.alphaNumeric(4)}`;
+  weekday = faker.date.weekday().toUpperCase();
+  discount = parseFloat(randomNumber(1, 99).toString());
+  intervalUnitId = 104;
+  cardBrand = `${faker.company.companyName()}`;
+  cardExternalNumber = `${faker.random.alphaNumeric(10)}`;
+  cardInternalNumber = `${faker.random.alphaNumeric(10)}`;
+  cardNickName = `${faker.animal.insect()}_${faker.animal.snake()}`;
+  uuid = faker.datatype.uuid();
+  firstName = faker.name.firstName();
+  lastName = faker.name.lastName();
+  emailAddress = faker.internet.email();
+  address1 = faker.address.streetAddress(true);
+  administrativeArea = 'CA';
+  country = 'USA';
+  locality = faker.address.county();
+  postalCode = faker.address.zipCode();
+  password = faker.internet.password();
+  pid = faker.lorem.words(1);
+  hostId = `H${faker.random.alphaNumeric(4)}`;
+  hostName = `${faker.music.genre()}_${faker.animal.cat()}`;
+  powerOutput = parseFloat(randomNumber(1, 9999).toString());
+  chargerModelName = faker.lorem.words(3);
+  chargerModelSku = faker.datatype.uuid();
+  chargerGroupName = faker.lorem.words(3);
+  chargerGroupDescription = faker.lorem.words(6);
+  tariffForExtendPricingRandomFloat = getRandomFloat(0, 100, 2);
+  tariffForExtendName = faker.lorem.words(3).toUpperCase();
+}

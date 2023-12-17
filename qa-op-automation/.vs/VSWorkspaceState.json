@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\evgo-qa-op-automation",
+    "\\evgo-qa-op-automation\\api",
+    "\\evgo-qa-op-automation\\tests",
+    "\\evgo-qa-op-automation\\tests\\operator_portal",
+    "\\evgo-qa-op-automation\\tests\\operator_portal\\hybrid"
+  ],
+  "SelectedNode": "\\evgo-qa-op-automation\\tests\\operator_portal\\hybrid\\createAccountOwner.superAdmin.test.ts",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  app:
+    container_name: evgo-op-ext
+    command: sleep infinity
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VARIANT: 12
+    volumes:
+      - evgo-op-ext:/evgo-op-ext
+
+volumes:
+  evgo-op-ext:

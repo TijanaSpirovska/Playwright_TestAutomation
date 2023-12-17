@@ -1,0 +1,9 @@
+export const EXT_HOST_RED = 'EXT-Host-Red';
+export const EXT_HOST_BLUE = 'EXT-Host-Blue';
+export const EXT_ADDNREMOVECHARGER = 'EXT-ADDNREMOVECHARGER';
+export const CHARGER_PRICE_GROUP_ID = 401;
+export const CUSTOM_ACCESS_GROUP_ID = 402;
+export const EXT_SITE_NEW_YORK = 'EXT-Site-New York';
+export const EXT_PROPERTY_NEW_YORK = 'EXT-Site-New York';
+export const existingPlanName = 'KOTEFIRSTPLAN1'
+export const updatePlanSuccessMessage = 'Plan Updated'
